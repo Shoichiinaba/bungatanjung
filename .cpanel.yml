@@ -3,5 +3,11 @@ deployment:
   tasks:
     - export DEPLOYPART=/home/u5587213/public_html/sisolusi.id/bungatanjung/
     - /bin/cp -R application $DEPLOYPART
-    - /bin/cp -R temp_doc $DEPLOYPART
     - /bin/cp -R assets $DEPLOYPART
+    - /bin/cp -R system $DEPLOYPART
+    - /bin/cp -R temp_doc $DEPLOYPART
+    - /bin/cp -R vendor $DEPLOYPART
+    - /bin/cp composer.json $DEPLOYPART
+    - /bin/cp composer.lock $DEPLOYPART
+    - /bin/cp contributing.md $DEPLOYPART
+    - /bin/cp index.php $DEPLOYPART
