@@ -22,7 +22,7 @@ class Import extends AUTH_Controller
         //ketika button submit diklik
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/'; //siapkan path untuk upload file
-            $config['allowed_types']    = 'xlsx|xls'; //siapkan format file
+            $config['allowed_types']    = 'xlsx|xls|csv'; //siapkan format file
             $config['file_name']        = 'doc' . time(); //rename file yang diupload
 
             $this->load->library('upload', $config);
@@ -77,7 +77,7 @@ class Import extends AUTH_Controller
                     //tampilkan pesan success dan redirect ulang ke index controller import
                     echo    '<script type="text/javascript">
                                alert(\'Data Deposit berhasil di Import\');
-                               window.location.replace("' . base_url('Upload_data/tokopedia') . '");
+                               window.location.replace("' . base_url('Data_deposit') . '");
                            </script>';
                 }
             } else {
