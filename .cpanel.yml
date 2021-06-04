@@ -1,0 +1,8 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPART=/home/u5587213/public_html/sisolusi.id/web/
+    - /bin/cp index.html $DEPLOYPART
+    - /bin/cp -R application $DEPLOYPART
+    - /bin/cp -R temp_doc $DEPLOYPART
+    - /bin/cp -R assets $DEPLOYPART
