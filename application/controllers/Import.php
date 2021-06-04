@@ -23,7 +23,7 @@ class Import extends AUTH_Controller
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/'; //siapkan path untuk upload file
             $config['allowed_types']    = 'xlsx|xls|csv'; //siapkan format file
-            $config['file_name']        = 'doc' . time(); //rename file yang diupload
+            $config['file_name']        = 'deposit' . time(); //rename file yang diupload
 
             $this->load->library('upload', $config);
 
@@ -32,11 +32,12 @@ class Import extends AUTH_Controller
                 $file   = $this->upload->data();
 
                 $reader = ReaderEntityFactory::createXLSXReader(); //buat xlsx reader
+                $reader = ReaderEntityFactory::createCSVReader(); //buat csvreader
                 $reader->open('temp_doc/' . $file['file_name']); //open file xlsx yang baru saja diunggah
 
                 //looping pembacaat sheet dalam file        
                 foreach ($reader->getSheetIterator() as $sheet) {
-                    $numRow = 1;
+                    $numRow = 2;
 
                     //siapkan variabel array kosong untuk menampung variabel array data
                     $save   = array();
@@ -50,13 +51,13 @@ class Import extends AUTH_Controller
 
                             $data = array(
                                 'date'              => $cells[0],
-                                'description'    	=> $cells[1],
-                                'nominal'           => $cells[2],
-								'balance'           => $cells[3],
-                                'invoice'     		=> $cells[4],
-                                'product_name'      => $cells[5],
-								'price'             => $cells[6],
-                                'total_amount'     	=> $cells[7]
+                                'status'    	    => $cells[1],
+                                'invoice'     		=> $cells[2],
+                                'nominal'           => $cells[3],
+								'balance'           => $cells[4]
+                                // 'product_name'      => $cells[5],
+								// 'price'             => $cells[6],
+                                // 'total_amount'     	=> $cells[7]
                             );
 
                             //tambahkan array $data ke $save
@@ -97,7 +98,7 @@ class Import extends AUTH_Controller
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/'; //siapkan path untuk upload file
             $config['allowed_types']    = 'xlsx|xls'; //siapkan format file
-            $config['file_name']        = 'doc' . time(); //rename file yang diupload
+            $config['file_name']        = 'transaksi' . time(); //rename file yang diupload
 
             $this->load->library('upload', $config);
 

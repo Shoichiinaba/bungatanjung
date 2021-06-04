@@ -28,7 +28,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>NO</th>
+                    <!-- <th>NO</th> -->
                     <th>Count</th>
                     <th>Order id</th>
                     <th>Pagment Data</th>
@@ -60,7 +60,7 @@
                   <tbody>
                     <?php $no= 0; foreach ($list as $a ): $no++;?>
                   <tr>
-                      <td><?php echo $no; ?></td>
+                      <!-- <td><?php echo $no; ?></td> -->
                       <td><?php echo $a->count; ?></td>
                       <td><?php echo $a->order_id; ?></td>
                       <td><?php echo $a->pagment_date; ?></td>

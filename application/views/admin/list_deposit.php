@@ -21,7 +21,7 @@
       <section class="content">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Data transaksi</h3>
+            <h3 class="card-title">Data Deposit</h3>
           </div>
             <!-- /.card-header -->
               <div class="card-body">
@@ -30,13 +30,13 @@
                   <tr>
                     <th>NO</th>
                     <th>Date</th>
-                    <th>Deskription</th>
+                    <th>Stetus</th>
+                    <th>Invoice</th>
                     <th>Nominal (Rp)</th>
                     <th>Balance</th>
-                    <th>Invoice</th>
-                    <th>Product Name</th>
+                    <!-- <th>Product Name</th>
                     <th>Price</th>
-                    <th>Total Amount</th>
+                    <th>Total Amount</th> -->
                     <th>action</th>
                   </tr>
                   </thead>
@@ -45,15 +45,15 @@
                   <tr>
                       <td><?php echo $no; ?></td>
                       <td><?php echo $g->date; ?></td>
-                      <td><?php echo $g->description; ?></td>
+                      <td><?php echo $g->status; ?></td>
+                      <td><?php echo $g->invoice; ?></td>
                       <td><?php echo $g->nominal; ?></td>
                       <td><?php echo $g->balance; ?></td>
-                      <td><?php echo $g->invoice; ?></td>
-                      <td><?php echo $g->product_name; ?></td>
+                      <!-- <td><?php echo $g->product_name; ?></td>
                       <td><?php echo $g->price; ?></td>
-                      <td><?php echo $g->total_amount; ?></td>
+                      <td><?php echo $g->total_amount; ?></td> -->
                       <td>
-                      <a href="<?php echo site_url(''); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash-o"></i></a>
+                      <a href="<?php echo site_url(''); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a>
                   </tr>
                     <?php endforeach;?>
                   </tbody>
