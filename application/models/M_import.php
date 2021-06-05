@@ -8,7 +8,7 @@ class M_import extends CI_Model {
 		$jumlah = count($data);
 
         if ($jumlah > 0) {
-            $this->db->insert_batch('jal', $data);
+            $this->db->insert_batch('deposit_tokopedia', $data);
         }
 	}
 

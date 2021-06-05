@@ -53,7 +53,7 @@
                       <td><?php echo $g->price; ?></td>
                       <td><?php echo $g->total_amount; ?></td> -->
                       <td>
-                      <a href="<?php echo site_url(''); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a>
+                      <a href="<?php echo site_url('data_deposit/hapus/'.$g->id_deposit); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a>
                   </tr>
                     <?php endforeach;?>
                   </tbody>

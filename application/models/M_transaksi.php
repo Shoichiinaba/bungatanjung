@@ -16,4 +16,10 @@ class M_transaksi extends CI_Model {
 		$query = $this->db->get('transaksi_tokopedia');
 		return $query->result();
 	}
+
+	function delete($params ='')
+    {
+        $sql = "DELETE  FROM deposit_tokopedia WHERE id_deposit = ? ";
+        return $this->db->query($sql, $params);	
+    }
 }

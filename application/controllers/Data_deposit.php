@@ -20,4 +20,10 @@ class Data_deposit extends AUTH_Controller {
         $this->load->view($this->template, $data);	
 	}
 
+	function hapus($params = '') {
+        $this->M_transaksi->delete($params);
+        $this->session->set_flashdata('sukses',"Berhasil Di Hapus");
+        return redirect('Data_deposit');
+    }
+
 }
