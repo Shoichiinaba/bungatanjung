@@ -172,7 +172,7 @@ class Import extends AUTH_Controller
                     //tampilkan pesan success dan redirect ulang ke index controller import
                     echo    '<script type="text/javascript">
                                alert(\'Data Deposit berhasil di Import\');
-                               window.location.replace("' . base_url('Upload_data/tokopedia') . '");
+                               window.location.replace("' . base_url('Data_transaksi') . '");
                            </script>';
                 }
             } else {

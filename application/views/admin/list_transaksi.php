@@ -32,6 +32,7 @@
                     <th>Count</th>
                     <th>Order id</th>
                     <th>Pagment Data</th>
+                    <th>invoice</th>
                     <th>Order Status</th>
                     <th>Product Id</th>
                     <th>Product Name</th>
@@ -63,6 +64,7 @@
                       <!-- <td><?php echo $no; ?></td> -->
                       <td><?php echo $a->count; ?></td>
                       <td><?php echo $a->order_id; ?></td>
+                      <td><?php echo $a->invoice; ?></td>
                       <td><?php echo $a->pagment_date; ?></td>
                       <td><?php echo $a->order_status; ?></td>
                       <td><?php echo $a->product_id; ?></td>
