@@ -22,4 +22,10 @@ class M_transaksi extends CI_Model {
         $sql = "DELETE  FROM deposit_tokopedia WHERE id_deposit = ? ";
         return $this->db->query($sql, $params);	
     }
+
+	function hapus_trx($params ='')
+    {
+        $sql = "DELETE  FROM transaksi_tokopedia WHERE id_trx = ? ";
+        return $this->db->query($sql, $params);	
+    }
 }

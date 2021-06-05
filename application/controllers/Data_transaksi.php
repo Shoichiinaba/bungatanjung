@@ -20,4 +20,10 @@ class Data_transaksi extends AUTH_Controller {
         $this->load->view($this->template, $data);	
 	}
 
+	function hapus($params = '') {
+        $this->M_transaksi->hapus_trx($params);
+        $this->session->set_flashdata('sukses',"Berhasil Di Hapus");
+        return redirect('Data_transaksi');
+    }
+
 }

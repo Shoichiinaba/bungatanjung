@@ -81,14 +81,13 @@
                       <td><?php echo $a->insurance; ?></td>
                       <td><?php echo $a->total_shipping_fee; ?></td>
                       <td><?php echo $a->total_amount; ?></td>
-                      <td><?php echo $a->discount_amount; ?></td>
                       <td><?php echo $a->AWB; ?></td>
                       <td><?php echo $a->jenis_layanan; ?></td>
                       <td><?php echo $a->bebas_ongkir; ?></td>
                       <td><?php echo $a->warehouse_origin; ?></td>
                       <td><?php echo $a->campaign_name; ?></td>
                       <td>
-                      <a href="<?php echo site_url(''); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash-o"></i></a>
+                      <a href="<?php echo site_url('Data_transaksi/hapus/'.$a->id_trx); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a>
                   </tr>
                     <?php endforeach;?>
                   </tbody>
