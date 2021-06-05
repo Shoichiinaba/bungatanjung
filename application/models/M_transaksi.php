@@ -28,4 +28,16 @@ class M_transaksi extends CI_Model {
         $sql = "DELETE  FROM transaksi_tokopedia WHERE id_trx = ? ";
         return $this->db->query($sql, $params);	
     }
+
+	public function cek_transaksi()
+	{
+    	
+		$this->db->select('deposit_tokopedia.*, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount');
+		$this->db->from('deposit_tokopedia');
+		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice', 'right');
+		$query = $this->db->get('');
+		return $query->result();
+	}
+
+
 }

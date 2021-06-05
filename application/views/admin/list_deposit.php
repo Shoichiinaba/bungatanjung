@@ -34,9 +34,6 @@
                     <th>Invoice</th>
                     <th>Nominal (Rp)</th>
                     <th>Balance</th>
-                    <!-- <th>Product Name</th>
-                    <th>Price</th>
-                    <th>Total Amount</th> -->
                     <th>action</th>
                   </tr>
                   </thead>
@@ -49,11 +46,8 @@
                       <td><?php echo $g->invoice; ?></td>
                       <td><?php echo $g->nominal; ?></td>
                       <td><?php echo $g->balance; ?></td>
-                      <!-- <td><?php echo $g->product_name; ?></td>
-                      <td><?php echo $g->price; ?></td>
-                      <td><?php echo $g->total_amount; ?></td> -->
                       <td>
-                      <a href="<?php echo site_url('data_deposit/hapus/'.$g->id_deposit); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a>
+                      <a href="<?php echo site_url('data_deposit/hapus/'.$g->invoice); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a>
                   </tr>
                     <?php endforeach;?>
                   </tbody>

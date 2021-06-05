@@ -6,7 +6,7 @@ class Cek_transaksi extends AUTH_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('M_import');
+		$this->load->model('M_transaksi');
 		$this->load->helper('url');
 
 		
@@ -15,6 +15,7 @@ class Cek_transaksi extends AUTH_Controller {
 	function index()
 	{
 		$data['content'] 		= 'admin/cek_trx';
+		$data['list']			=$this->M_transaksi->cek_transaksi();
 		$data['userdata'] 		= $this->userdata;
         $this->load->view($this->template, $data);	
 	}
