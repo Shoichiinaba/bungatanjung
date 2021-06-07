@@ -31,13 +31,38 @@ class M_transaksi extends CI_Model {
 
 	public function cek_transaksi()
 	{
-    	
 		$this->db->select('deposit_tokopedia.*, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount');
 		$this->db->from('deposit_tokopedia');
-		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice', 'right');
+		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice', 'RIGHT');
 		$query = $this->db->get('');
 		return $query->result();
 	}
+	// dashboard informasi
+	function trx_deposit()
+  	{
+        $this->db->select('deposit_tokopedia.*, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount');
+		$this->db->from('deposit_tokopedia');
+		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice');
+		$query = $this->db->get('');
+		return $query->num_rows();
+    }
 
+	function depos_no()
+  	{
+        $this->db->select('deposit_tokopedia.*, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount');
+		$this->db->from('deposit_tokopedia');
+		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice', 'RIGHT');
+		$query = $this->db->get('');
+		return $query->num_rows();
+    }
+
+	function trx_no()
+  	{
+        $this->db->select('deposit_tokopedia.*, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount');
+		$this->db->from('deposit_tokopedia');
+		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice', 'LEFT');
+		$query = $this->db->get('');
+		return $query->num_rows();
+    }
 
 }

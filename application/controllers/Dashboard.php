@@ -7,6 +7,7 @@ class Dashboard extends AUTH_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('M_admin');
+		$this->load->model('M_transaksi');
 		$this->load->helper('url');
 
 		
@@ -14,8 +15,11 @@ class Dashboard extends AUTH_Controller {
 	}
 	function index()
 	{
-		$data['content'] 		= 'admin/home';
-		$data['userdata'] 		= $this->userdata;
+		$data['content'] 			= 'admin/home';
+		$data['jml_trx_deposit'] 	= $this->M_transaksi->trx_deposit();
+		$data['jml_depos_no'] 		= $this->M_transaksi->depos_no();
+		$data['jml_trx_no'] 		= $this->M_transaksi->trx_no();
+		$data['userdata'] 			= $this->userdata;
         $this->load->view($this->template, $data);	
 	}
 
