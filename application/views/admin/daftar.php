@@ -21,11 +21,12 @@
             });
           </script>
         <?php endif; ?>
-
+        <br><br><br>
+<center>
     <body class="hold-transition register-page">
       <div class="register-box">
-        <div class="card card-outline card-warning">
-            <div class="card-header text-center">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
               <a href=""><b>Registrasi</b> Admin Baru</a>
             </div>
               <div class="card-body">
@@ -73,7 +74,7 @@
               </div>
         </div>  
       </div> 
-    </body>
+    </body></center>
 </div>
 
 

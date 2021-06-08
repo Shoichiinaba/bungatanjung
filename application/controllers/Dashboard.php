@@ -16,9 +16,11 @@ class Dashboard extends AUTH_Controller {
 	function index()
 	{
 		$data['content'] 			= 'admin/home';
+		$data['dep_up'] 			= $this->M_transaksi->deposupload();
+		$data['trx_up'] 			= $this->M_transaksi->trxupload();
 		$data['jml_trx_deposit'] 	= $this->M_transaksi->trx_deposit();
-		$data['jml_depos_no'] 		= $this->M_transaksi->depos_no();
-		$data['jml_trx_no'] 		= $this->M_transaksi->trx_no();
+		$data['jml_depos_no'] 		= $this->M_transaksi->depos_no()[0]['total'];
+		// $data['jml_trx_no'] 		= $this->M_transaksi->trx_no()[0]['total'];
 		$data['userdata'] 			= $this->userdata;
         $this->load->view($this->template, $data);	
 	}

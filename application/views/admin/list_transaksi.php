@@ -64,8 +64,8 @@
                       <!-- <td><?php echo $no; ?></td> -->
                       <td><?php echo $a->count; ?></td>
                       <td><?php echo $a->order_id; ?></td>
-                      <td><?php echo $a->invoice; ?></td>
                       <td><?php echo $a->pagment_date; ?></td>
+                      <td><?php echo $a->invoice; ?></td>
                       <td><?php echo $a->order_status; ?></td>
                       <td><?php echo $a->product_id; ?></td>
                       <td><?php echo $a->product_name; ?></td>

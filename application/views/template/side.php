@@ -38,7 +38,7 @@
           </li>
           <li class="nav-item">
             <a href="<?php echo site_url('Upload_data'); ?>" class="nav-link">
-              <i class="nav-icon fa fa-newspaper"></i>
+              <i class="nav-icon fa fas fa-upload"></i>
               <p>
                 Upload Data
               </p>
@@ -47,7 +47,7 @@
 
         <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-upload"></i>
+              <i class="nav-icon fas fa-file-invoice "></i>
               <p>
                 Data Upload
                 <i class="right fas fa-angle-left"></i>
