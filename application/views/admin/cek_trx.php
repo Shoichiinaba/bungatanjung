@@ -53,7 +53,7 @@
                           <!-- <td><?php echo $no; ?></td> -->
                           <td><?php echo $d->date; ?></td>
                           <td><?php echo $d->status; ?></td>
-                          <td><?php echo $d->invoice; ?></td>
+                          <td><?php echo $d->deposit_invoice; ?></td>
                           <td><?php echo $d->nominal; ?></td>
                           <td><?php echo $d->balance; ?></td>
                           <td class="bg-gray disabled"></td>
