@@ -34,6 +34,13 @@ class M_transaksi extends CI_Model {
 		$query = $this->db->query("SELECT IF(deposit_tokopedia.status IS NULL, '', deposit_tokopedia.date) as date, IF(deposit_tokopedia.status IS NULL, '', deposit_tokopedia.status) as status, deposit_tokopedia.nominal, deposit_tokopedia.balance, IF(deposit_tokopedia.status IS NULL, '', deposit_tokopedia.invoice) as deposit_invoice, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount FROM deposit_tokopedia RIGHT JOIN transaksi_tokopedia ON deposit_tokopedia.invoice = transaksi_tokopedia.invoice");
 		return $query->result();
 	}
+	// filter
+	public function filter_lap()
+	{
+		$query = $this->db->query("SELECT IF(deposit_tokopedia.status IS NULL, '', deposit_tokopedia.date) as date, IF(deposit_tokopedia.status IS NULL, '', deposit_tokopedia.status) as status, deposit_tokopedia.nominal, deposit_tokopedia.balance, IF(deposit_tokopedia.status IS NULL, '', deposit_tokopedia.invoice) as deposit_invoice, transaksi_tokopedia.invoice as invoice, transaksi_tokopedia.product_name, transaksi_tokopedia.price, transaksi_tokopedia.total_amount FROM deposit_tokopedia RIGHT JOIN transaksi_tokopedia ON deposit_tokopedia.invoice = transaksi_tokopedia.invoice");
+		return $query->result();
+	}
+
 	// dashboard informasi
 	public function deposupload()
 	{

@@ -14,12 +14,15 @@
         <link rel="stylesheet" href="<?= base_url(); ?>assets/bower_components/Ionicons/css/ionicons.min.css">
         <!-- DataTables -->
         <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/datatables-bs4/css/dataTables.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/datatables-buttons/css/buttons.bootstrap4.css">
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
         <!-- Theme style -->
         <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/adminlte.min.css">
         <!-- SweetAlert2 -->
         <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
         <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/bootstrap-slider/bootstrap-slider.min">
-         <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/plugins/toastr/toastr.min.css">  
+        <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/plugins/toastr/toastr.min.css">  
                      
 
 </head>
@@ -38,8 +41,19 @@
         <!-- Bootstrap 4 -->
         <script src="<?= base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
         <!-- DataTables -->
-        <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.js"></script>
-        <script src="<?= base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/jszip/jszip.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/pdfmake/pdfmake.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/pdfmake/vfs_fonts.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+        <script src="<?= base_url(); ?>assets//plugins/datatables-buttons/js/buttons.print.min.js"></script>
+        <script src="<?= base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+        
         <!-- AdminLTE App -->
         <script src="<?= base_url(); ?>assets/dist/js/adminlte.min.js"></script>
         <!-- AdminLTE for demo purposes -->
@@ -51,14 +65,19 @@
         <!-- page script -->
         <script>
         $(function () {
-            $("#example1").DataTable();
+            $("#example1").DataTable({
+                "responsive": true, "lengthChange": false, "autoWidth": false, "ordering": true,
+                "buttons": ["csv", "excel", "print"]
+            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
             $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false,
+                "paging": true,
+                "lengthChange": false,
+                "searching": false,
+                "ordering": true,
+                "info": true,
+                "autoWidth": false,
+                "responsive": true,
+                });
             });
-        });
         </script>

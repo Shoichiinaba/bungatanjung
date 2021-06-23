@@ -22,7 +22,7 @@ class Cek_transaksi extends AUTH_Controller
 	public function export_excel()
 	{	
 		$data['title']			= 'Export Excel';
- 		$data['list']			=$this->M_transaksi->cek_transaksi();
+ 		$data['list']			=$this->M_transaksi->filter_lap();
 		$this->load->view('excel/Export_excel', $data);
  	}
 
