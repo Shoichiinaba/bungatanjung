@@ -28,6 +28,7 @@
                   <thead>
                   <tr>
                     <th class="bg-teal">Date</th>
+                    <th class="bg-teal">Nama toko</th>
                     <th class="bg-teal">Status</th>
                     <th class="bg-teal">Invoice</th>
                     <th class="bg-teal">Nominal (Rp)</th>
@@ -44,6 +45,7 @@
                       <tr>
                           <!-- <td><?php echo $no; ?></td> -->
                           <td><?php echo $d->date; ?></td>
+                          <td><?php echo $d->Nama_toko; ?></td>
                           <td><?php echo $d->status; ?></td>
                           <td><?php echo $d->deposit_invoice; ?></td>
                           <td><?php echo $d->nominal; ?></td>

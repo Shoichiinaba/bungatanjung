@@ -30,6 +30,7 @@
                   <tr>
                     <th>NO</th>
                     <th>Date</th>
+                    <th>ID Toko</th>
                     <th>Stetus</th>
                     <th>Invoice</th>
                     <th>Nominal (Rp)</th>
@@ -42,6 +43,7 @@
                   <tr>
                       <td><?php echo $no; ?></td>
                       <td><?php echo $g->date; ?></td>
+                      <td><?php echo $g->id_toko; ?></td>
                       <td><?php echo $g->status; ?></td>
                       <td><?php echo $g->invoice; ?></td>
                       <td><?php echo $g->nominal; ?></td>

@@ -81,3 +81,32 @@
                 });
             });
         </script>
+        <script type="text/javascript">
+  $(function() {
+    $('.toastsDefaultFull').click(function() {
+      $(document).Toasts('create', {
+        body: 'Aplikasi membutuhkan update untuk menggunakan fitur upload shopee...!!!',
+        title: 'Coming Soon!!!',
+        subtitle: 'Versi belum tersedia',
+        class: 'bg-maroon',
+        icon: 'fas fa-envelope fa-lg',
+        autohide: true,
+        position: 'topLeft',
+        delay: 3500,
+      })
+    });
+    $('.toastsDefaultFull1').click(function() {
+      $(document).Toasts('create', {
+        body: 'Aplikasi membutuhkan update untuk menggunakan fitur tambah toko bukalapak...!!!',
+        title: 'Coming Soon!!!',
+        subtitle: 'Versi belum tersedia',
+        class: 'bg-danger',
+        icon: 'fas fa-cart-plus fa-lg',
+        autohide: true,
+        position: 'topLeft',
+        delay: 3500,
+      })
+    });
+  });
+
+</script>

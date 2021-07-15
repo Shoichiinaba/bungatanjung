@@ -14,6 +14,7 @@ class Import extends AUTH_Controller
     {
         parent::__construct();
         //load model
+        $this->load->library('session');
         $this->load->model('M_import');
     }
 
@@ -35,6 +36,8 @@ class Import extends AUTH_Controller
                 $reader = ReaderEntityFactory::createCSVReader(); //buat csvreader
                 $reader->open('temp_doc/' . $file['file_name']); //open file xlsx yang baru saja diunggah
 
+                $id_toko = $this->session->userdata('id_toko');
+
                 //looping pembacaat sheet dalam file        
                 foreach ($reader->getSheetIterator() as $sheet) {
                     $numRow = 2;
@@ -51,6 +54,7 @@ class Import extends AUTH_Controller
 
                             $data = array(
                                 'date'              => $cells[0],
+                                'id_toko'           => $id_toko,
                                 'status'    	    => $cells[1],
                                 'invoice'     		=> $cells[2],
                                 'nominal'           => $cells[3],

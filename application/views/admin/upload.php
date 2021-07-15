@@ -3,12 +3,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Upload Data Excel</h1>
+            <h1>Pilih Marketplace</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="<?php echo site_url('Dashboard'); ?>">Dashboard</a></li>
-              <li class="breadcrumb-item active">Upload Data</li>
+              <li class="breadcrumb-item active">Marketplace</li>
             </ol>
           </div>
         </div>
@@ -36,11 +36,10 @@
                   <div class="lockscreen-image">
                     <img src="<?php echo base_url(); ?>assets/dist/img/marketplace/tokped.png" alt="User Image">
                   </div>
-                    <form action="<?php echo site_url('Upload_data/tokopedia/'); ?>" class="lockscreen-credentials bg-green">
+                    <form action="<?php echo site_url('Upload_data/list_toko/'); ?>" class="">
                       <div class="input-group">
-                        <input  class="form-control " placeholder=" Dari Tokopedia">
-                          <div class="input-group-append bg-green">
-                            <button type="submit"  class="btn"><i class="fas fa-upload text-muted"></i></button>
+                          <div class="input-group-append col-md-12">
+                            <button type="submit" class="btn btn-outline-success btn-block btn-sm"><i class="fa fa-cart-plus"></i>  Dari Tokopedia</button>
                           </div>
                        </div>
                     </form>
@@ -51,11 +50,10 @@
                   <div class="lockscreen-image">
                     <img src="<?php echo base_url(); ?>assets/dist/img/marketplace/shopee.png" alt="User Image">
                   </div>
-                    <form class="lockscreen-credentials">
+                    <form action="<?php echo site_url('Upload_data/list_toko_shope/'); ?>" class="">
                       <div class="input-group">
-                        <input  class="form-control" disabled placeholder=" Dari Shopee">
-                          <div class="input-group-append">
-                            <button type="button" disabled class="btn"><i class="fas fa-upload text-muted"></i></button>
+                          <div class="input-group-append col-md-12">
+                            <button type="submit" class="btn btn-outline-warning btn-block btn-sm"><i class="fa fa-cart-plus"></i>  Dari Shopee</button>
                           </div>
                        </div>
                     </form>
@@ -66,11 +64,10 @@
                   <div class="lockscreen-image">
                     <img src="<?php echo base_url(); ?>assets/dist/img/marketplace/bukalapak.png" alt="User Image">
                   </div>
-                    <form class="lockscreen-credentials">
+                    <form action="<?php echo site_url(''); ?>" class="">
                       <div class="input-group">
-                        <input  class="form-control" disabled placeholder=" Dari Bukalapak">
-                          <div class="input-group-append">
-                            <button type="button" class="btn" disabled ><i class="fas fa-upload text-muted"></i></button>
+                          <div class="input-group-append col-md-12">
+                            <button type="button" class="btn btn-outline-danger btn-block btn-sm toastsDefaultFull1"><i class="fa fa-cart-plus"></i>  Dari Bukalapak</button>
                           </div>
                        </div>
                     </form>
