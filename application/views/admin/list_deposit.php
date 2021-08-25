@@ -22,15 +22,17 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Data Deposit</h3>
-          </div>
+        </div>
             <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1"  class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>NO</th>
                     <th>Date</th>
-                    <th>ID Toko</th>
+                    <th>
+                      Nama Toko
+                    </th>
                     <th>Stetus</th>
                     <th>Invoice</th>
                     <th>Nominal (Rp)</th>
@@ -43,7 +45,7 @@
                   <tr>
                       <td><?php echo $no; ?></td>
                       <td><?php echo $g->date; ?></td>
-                      <td><?php echo $g->id_toko; ?></td>
+                      <td><?php echo $g->Nama_toko; ?></td>
                       <td><?php echo $g->status; ?></td>
                       <td><?php echo $g->invoice; ?></td>
                       <td><?php echo $g->nominal; ?></td>
@@ -53,6 +55,18 @@
                   </tr>
                     <?php endforeach;?>
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td>NO</td>
+                      <td>Date</td>
+                      <td>Nama Toko</td>
+                      <td>Stetus</td>
+                      <td>Invoice</td>
+                      <td>Nominal (Rp)</td>
+                      <td>Balance</td>
+                      <td>action</td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
         </div>

@@ -19,6 +19,16 @@ class Cek_transaksi extends AUTH_Controller
         $this->load->view($this->template, $data);	
 	}
 
+	function cek_trx_shopee()
+	{
+		$data['content'] 		= 'admin/cek_trx_shopee';
+		$data['dep_up'] 		= $this->M_transaksi->deposupload();
+		$data['trx_up'] 		= $this->M_transaksi->trxupload();
+		$data['list']			=$this->M_transaksi->cek_transaksi();
+		$data['userdata'] 		= $this->userdata;
+        $this->load->view($this->template, $data);	
+	}
+
 	public function export_excel()
 	{	
 		$data['title']			= 'Export Excel';

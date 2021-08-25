@@ -64,9 +64,26 @@ class Upload_data extends AUTH_Controller {
 		// $data['list']=$this->M_admin->get_data_admin();
 		$data['content'] = 'admin/import_transaksi';
 		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);	
+		$this->load->view($this->template, $data);	     
+	}
+
+	function temp_upload($id_toko='')
+	{
+		$data['list']=$this->M_import->get_data_temp($id_toko);
+		$data['content'] = 'admin/temp_upload';
+		$data['userdata'] 	= $this->userdata;
+		$data['format_number'] = function($number){
+			return number_format($number, 2, ',', '.');			
+		};
+		$this->load->view($this->template, $data);
           
 	}
+
+	function delete_temp($params = '') {
+        $this->M_import->delete_temp($params);
+        $this->session->set_flashdata('sukses',"Berhasil Di Hapus");
+        return redirect('Upload_data/temp_upload');
+    }
 
 	function delete($params = '') {
         $this->M_import->delete($params);

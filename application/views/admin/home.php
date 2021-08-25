@@ -31,7 +31,7 @@
         </div>
         <!-- information -->
          <div class="row">
-           <div class="col-lg-4 col-6">
+           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="row">
@@ -51,12 +51,12 @@
                 </div>
               </diV>
               <div class="icon">
-                <i class="ion ion-bag"></i>
+                <i class="ion ion-pie-graph"></i>
               </div>
               <a href="#" class="small-box-footer">Total Data Terupload </a>
             </div>
           </div>
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
@@ -70,7 +70,7 @@
             </div>
           </div>
           <!-- ./col -->
-          <div class="col-lg-4 col-6">
+          <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-purple">
               <div class="inner">
@@ -84,20 +84,19 @@
             </div>
           </div>
           <!-- ./col -->
-          <!-- <div class="col-lg-3 col-6"> -->
-            <!-- small box -->
-            <!-- <div class="small-box bg-purple">
+           <div class="col-lg-3 col-6">
+            <div class="small-box bg-yellow">
               <div class="inner">
-                <h3><?php echo $jml_trx_no; ?> Data</h3>
+                <h3><?php echo $jml_toko;  ?> Toko</h3>
 
-                <p>Transaksi tidak ada</p>
+                <p>Jumlah Toko</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div> -->
+          </div>
           <!-- ./col -->
         </div>
         <!-- /.row -->

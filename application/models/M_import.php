@@ -17,6 +17,26 @@ class M_import extends CI_Model {
 		return $this->db->get('deposit_tokopedia')->result_array();
 	}
 
+  public function get_data_temp($id_toko = '?'){
+    // SELECT 
+    // b.tgl_upload, 
+    // b.id_toko, 
+    // count(a.id_upload) as jumlah_data, 
+    // SUM(a.nominal) as total_nominal, 
+    // SUM(a.balance) as total_balance 
+    // FROM deposit_tokopedia a, histori_upload b WHERE a.id_upload = b.id GROUP BY a.id_upload
+		$this->db->select('b.id as id_upload, b.tgl_upload, b.id_toko');
+    $this->db->select('COUNT(a.id_upload) as jumlah_data');
+    $this->db->select('SUM(a.nominal) as total_nominal');
+    $this->db->select('SUM(a.balance) as total_balance');
+    $this->db->from('deposit_tokopedia AS a, histori_upload AS b');
+    $this->db->where('a.id_upload = b.id');
+    $this->db->where("a.id_toko = '$id_toko'");
+    $this->db->group_by('a.id_upload');
+    $sql = $this->db->get();
+    return $sql->result();
+	}
+
 	public function get_Shope($id_MP ='2')
 	{
 		  $this->db->select('toko.*');
@@ -45,6 +65,12 @@ class M_import extends CI_Model {
   function delete($params ='')
     {
         $sql = "DELETE  FROM toko WHERE Id_toko = ? ";
+        return $this->db->query($sql, $params);	
+    }
+
+  function delete_temp($params ='')
+    {
+        $sql = "DELETE  FROM histori_upload WHERE id = ? ";
         return $this->db->query($sql, $params);	
     }
 

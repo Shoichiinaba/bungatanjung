@@ -63,12 +63,12 @@
                 <table class="table table-striped">
                   <thead>                  
                     <tr>
-                      <th style="width: 3px">Upload</th>
-                      <th style="width: 3px">NO</th>
-                      <th style="width: 6px">ID Toko</th>
-                      <th style="width: 50px">Nama Toko</th>
-                      <th style="width: 20px" >Keterangan</th>
-                      <th style="width: 10px">action</th>
+                      <th>Upload</th>
+                      <th >NO</th>
+                      <th >ID Toko</th>
+                      <th >Nama Toko</th>
+                      <th >Keterangan</th>
+                      <th >action</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -81,7 +81,8 @@
                         <td><?php echo $g->Nama_toko; ?></td>
                         <td><?php echo $g->keterangan; ?></td>
                         <td align="center">
-                          <a href="<?php echo site_url('Upload_data/delete/'.$g->Id_toko); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');" class="btn btn-success btn-xs tooltips" data-popup="tooltip" data-original-title="Hapus Data" data-placement="top"><i class="fa fa-trash"></i></a>
+                          <a href="<?php echo site_url('Upload_data/temp_upload/'.$g->Id_toko); ?>" class="btn btn-success btn-xs tooltips" data-popup="tooltip" data-original-title="Undo Upload" data-placement="top"><i class="fa fa-recycle"></i> Temp_ Upload</a>
+                          <a href="<?php echo site_url('Upload_data/delete/'.$g->Id_toko); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');" class="btn btn-success btn-xs tooltips" data-popup="tooltip" data-original-title="Hapus Data" data-placement="top"><i class="fa fa-trash"></i> Hapus</a>
                       </tr>
                     <?php endforeach;?>
                   </tbody>

@@ -20,7 +20,7 @@ class Dashboard extends AUTH_Controller {
 		$data['trx_up'] 			= $this->M_transaksi->trxupload();
 		$data['jml_trx_deposit'] 	= $this->M_transaksi->trx_deposit();
 		$data['jml_depos_no'] 		= $this->M_transaksi->depos_no()[0]['total'];
-		// $data['jml_trx_no'] 		= $this->M_transaksi->trx_no()[0]['total'];
+		$data['jml_toko'] 			= $this->M_transaksi->jml_toko();
 		$data['userdata'] 			= $this->userdata;
         $this->load->view($this->template, $data);	
 	}

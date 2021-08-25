@@ -18,6 +18,19 @@ class Import extends AUTH_Controller
         $this->load->model('M_import');
     }
 
+    private function get_id_upload($id_toko){
+        $this->db->trans_begin();
+        $this->db->insert('histori_upload', array('id_toko' => $id_toko));
+        $item_id = $this->db->insert_id();
+        if($this->db->trans_status() === FALSE){
+            $this->db->trans_rollback();
+            return 0;
+        }else{
+            $this->db->trans_commit();
+            return $item_id;
+        }
+    }
+
     public function index()
     {
         //ketika button submit diklik
@@ -38,52 +51,59 @@ class Import extends AUTH_Controller
 
                 $id_toko = $this->session->userdata('id_toko');
 
+                $id_upload = $this->get_id_upload($id_toko);
+
+                if ($id_upload){
                 //looping pembacaat sheet dalam file        
-                foreach ($reader->getSheetIterator() as $sheet) {
-                    $numRow = 2;
+                    foreach ($reader->getSheetIterator() as $sheet) {
+                        $numRow = 2;
 
-                    //siapkan variabel array kosong untuk menampung variabel array data
-                    $save   = array();
+                        //siapkan variabel array kosong untuk menampung variabel array data
+                        $save   = array();
 
-                    //looping pembacaan row dalam sheet
-                    foreach ($sheet->getRowIterator() as $row) {
+                        //looping pembacaan row dalam sheet
+                        foreach ($sheet->getRowIterator() as $row) {
 
-                        if ($numRow > 1) {
-                            //ambil cell
-                            $cells = $row->getCells();
+                            if ($numRow > 1) {
+                                //ambil cell
+                                $cells = $row->getCells();
 
-                            $data = array(
-                                'date'              => $cells[0],
-                                'id_toko'           => $id_toko,
-                                'status'    	    => $cells[1],
-                                'invoice'     		=> $cells[2],
-                                'nominal'           => $cells[3],
-								'balance'           => $cells[4]
-                                // 'product_name'      => $cells[5],
-								// 'price'             => $cells[6],
-                                // 'total_amount'     	=> $cells[7]
-                            );
+                                $data = array(
+                                    'date'              => $cells[0],
+                                    'id_toko'           => $id_toko,
+                                    'status'    	    => $cells[1],
+                                    'invoice'     		=> $cells[2],
+                                    'nominal'           => preg_replace('/\,|\./', '', $cells[3]),
+                                    'balance'           => preg_replace('/\,|\./', '', $cells[4]),
+                                    'id_upload'         => $id_upload
+                                    // 'product_name'      => $cells[5],
+                                    // 'price'             => $cells[6],
+                                    // 'total_amount'     	=> $cells[7]
+                                );
 
-                            //tambahkan array $data ke $save
-                            array_push($save, $data);
+                                //tambahkan array $data ke $save
+                                array_push($save, $data);
+                            }
+
+                            $numRow++;
                         }
+                        //simpan data ke database
+                        $this->M_import->simpan($save);
 
-                        $numRow++;
+                        //tutup spout reader
+                        $reader->close();
+
+                        //hapus file yang sudah diupload
+                        unlink('temp_doc/' . $file['file_name']);
+
+                        //tampilkan pesan success dan redirect ulang ke index controller import
+                        echo    '<script type="text/javascript">
+                                alert(\'Data Deposit berhasil di Import\');
+                                window.location.replace("' . base_url('Data_deposit') . '");
+                            </script>';
                     }
-                    //simpan data ke database
-                    $this->M_import->simpan($save);
-
-                    //tutup spout reader
-                    $reader->close();
-
-                    //hapus file yang sudah diupload
-                    unlink('temp_doc/' . $file['file_name']);
-
-                    //tampilkan pesan success dan redirect ulang ke index controller import
-                    echo    '<script type="text/javascript">
-                               alert(\'Data Deposit berhasil di Import\');
-                               window.location.replace("' . base_url('Data_deposit') . '");
-                           </script>';
+                }else{
+                     $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Gagal upload data ke deposit');     
                 }
             } else {
                 // echo "Error :" . $this->upload->display_errors(); //tampilkan pesan error jika file gagal diupload

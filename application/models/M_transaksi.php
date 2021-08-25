@@ -5,10 +5,12 @@ class M_transaksi extends CI_Model {
 
 	public function deposit()
 	{
-		$this->db->select('deposit_tokopedia.*');
-		$query = $this->db->get('deposit_tokopedia');
-		return $query->result();
+		$this->db->select('deposit_tokopedia.*, toko.id_toko AS id_toko, toko.Nama_toko');
+    	$this->db->join('toko', 'deposit_tokopedia.id_toko = toko.id_toko');
+    	$sql = $this->db->get('deposit_tokopedia');
+    	return $sql->result();
 	}
+	
 
 	public function transaksi()
 	{
@@ -83,14 +85,11 @@ class M_transaksi extends CI_Model {
 		return $data->result_array();
     }
 
-	function trx_no()
+	function jml_toko()
   	{
-        $this->db->select('count(*) AS total');
-		$this->db->from('deposit_tokopedia');
-		$this->db->join('transaksi_tokopedia', 'transaksi_tokopedia.invoice = deposit_tokopedia.invoice', 'LEFT');
-		$this->db->where('transaksi_tokopedia.invoice', NULL);
-		$data=$this->db->get();
-		return $data->result_array();
+        $this->db->select('toko.*');
+		$query = $this->db->get('toko');
+		return $query->num_rows();
     }
 
 }
