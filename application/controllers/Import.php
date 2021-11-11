@@ -36,7 +36,7 @@ class Import extends AUTH_Controller
         //ketika button submit diklik
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/'; //siapkan path untuk upload file
-            $config['allowed_types']    = 'csv'; //siapkan format file
+            $config['allowed_types']    = 'xlsx|xls|csv'; //siapkan format file
             $config['file_name']        = 'deposit' . time(); //rename file yang diupload
 
             $this->load->library('upload', $config);
