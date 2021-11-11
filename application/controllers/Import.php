@@ -36,7 +36,7 @@ class Import extends AUTH_Controller
         //ketika button submit diklik
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/'; //siapkan path untuk upload file
-            $config['allowed_types']    = 'xlsx|xls|csv'; //siapkan format file
+            $config['allowed_types']    = 'csv'; //siapkan format file
             $config['file_name']        = 'deposit' . time(); //rename file yang diupload
 
             $this->load->library('upload', $config);
@@ -54,7 +54,7 @@ class Import extends AUTH_Controller
                 $id_upload = $this->get_id_upload($id_toko);
 
                 if ($id_upload){
-                //looping pembacaat sheet dalam file        
+                //looping pembacaat sheet dalam file
                     foreach ($reader->getSheetIterator() as $sheet) {
                         $numRow = 2;
 
@@ -103,7 +103,7 @@ class Import extends AUTH_Controller
                             </script>';
                     }
                 }else{
-                     $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Gagal upload data ke deposit');     
+                     $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Gagal upload data ke deposit');
                 }
             } else {
                 // echo "Error :" . $this->upload->display_errors(); //tampilkan pesan error jika file gagal diupload
@@ -133,7 +133,7 @@ class Import extends AUTH_Controller
                 $reader = ReaderEntityFactory::createXLSXReader(); //buat xlsx reader
                 $reader->open('temp_doc/' . $file['file_name']); //open file xlsx yang baru saja diunggah
 
-                //looping pembacaat sheet dalam file        
+                //looping pembacaat sheet dalam file
                 foreach ($reader->getSheetIterator() as $sheet) {
                     $numRow = 1;
 
