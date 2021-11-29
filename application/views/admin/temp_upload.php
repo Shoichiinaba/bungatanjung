@@ -55,6 +55,7 @@
                         <th>Jumlah Data</th>
                         <th>Total Nominal</th>
                         <th>Total Balance</th>
+                        <th>Upload Dari</th>
                         <th width ='6%'>Action</th>
                       </tr>
                     </thead>
@@ -67,6 +68,7 @@
                             <td><?php echo $g->jumlah_data; ?></td>
                             <td><?php echo $format_number($g->total_nominal); ?></td>
                             <td><?php echo $format_number($g->total_balance); ?></td>
+                            <td><?php echo $g->tipe_histori; ?></td>
                             <td align="center">
                             <a href="<?php echo site_url('Upload_data/delete_temp/'.$g->id_upload); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');" class="btn btn-danger btn-xs tooltips" data-popup="tooltip" data-original-title="Hapus Data" data-placement="top"><i class="fa fa-trash"></i></a>
                           </tr>

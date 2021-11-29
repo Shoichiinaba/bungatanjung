@@ -18,9 +18,9 @@ class Import extends AUTH_Controller
         $this->load->model('M_import');
     }
 
-    private function get_id_upload($id_toko){
+    private function get_id_upload($id_toko, $tipe){
         $this->db->trans_begin();
-        $this->db->insert('histori_upload', array('id_toko' => $id_toko));
+        $this->db->insert('histori_upload', array('id_toko' => $id_toko, 'tipe_histori' => $tipe));
         $item_id = $this->db->insert_id();
         if($this->db->trans_status() === FALSE){
             $this->db->trans_rollback();
@@ -51,7 +51,7 @@ class Import extends AUTH_Controller
 
                 $id_toko = $this->session->userdata('id_toko');
 
-                $id_upload = $this->get_id_upload($id_toko);
+                $id_upload = $this->get_id_upload($id_toko, 'deposit');
 
                 if ($id_upload){
                 //looping pembacaat sheet dalam file
@@ -132,6 +132,9 @@ class Import extends AUTH_Controller
 
                 $reader = ReaderEntityFactory::createXLSXReader(); //buat xlsx reader
                 $reader->open('temp_doc/' . $file['file_name']); //open file xlsx yang baru saja diunggah
+                // get id toko
+                $id_toko = $this->session->userdata('id_toko');
+                $id_upload = $this->get_id_upload($id_toko, 'transaksi');
 
                 //looping pembacaat sheet dalam file
                 foreach ($reader->getSheetIterator() as $sheet) {
@@ -175,7 +178,9 @@ class Import extends AUTH_Controller
                                 'jenis_layanan'      => $cells[24],
                                 'bebas_ongkir'       => $cells[25],
 								'warehouse_origin'   => $cells[26],
-                                'campaign_name'      => $cells[27]
+                                'campaign_name'      => $cells[27],
+                                'id_upload'          => $id_upload,
+                                'id_toko'            => $id_toko,
                             );
 
                             //tambahkan array $data ke $save

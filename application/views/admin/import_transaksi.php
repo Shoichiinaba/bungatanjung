@@ -31,7 +31,7 @@
               <img class="img-circle elevation-2" src="<?php echo base_url(); ?>assets/dist/img/marketplace/tokped.png" alt="User Avatar">
             </div>
               <div class="card-footer">
-                 <?= form_open_multipart("Import/transaksi"); ?>
+                  <?= form_open_multipart("Import/transaksi"); ?>
                     <div class="row">
                       <div class="col-sm-4 border-right">
                         <div class="description-block">
@@ -46,7 +46,7 @@
                       <div class="description-block">
                         <button class='btn btn-success swalDefaultError' name="submit" type="submit" value="upload">
 						            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-			    		          Import		
+			    		          Import
 					              </button>
                       </div>
                     </div>

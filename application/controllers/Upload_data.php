@@ -18,8 +18,8 @@ class Upload_data extends AUTH_Controller {
 		// $data['list']=$this->M_admin->get_data_admin();
 		$data['content'] = 'admin/upload';
 		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);	
-          
+		$this->load->view($this->template, $data);
+
 	}
 
 	function list_toko()
@@ -28,8 +28,8 @@ class Upload_data extends AUTH_Controller {
 		$data['nomer']= $this->M_import->TOKPED();
 		$data['content'] = 'admin/daftar_toko';
 		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);	
-          
+		$this->load->view($this->template, $data);
+
 	}
 
 	function list_toko_shope()
@@ -38,8 +38,8 @@ class Upload_data extends AUTH_Controller {
 		$data['nomer']= $this->M_import->Shope();
 		$data['content'] = 'admin/daftar_toko_shope';
 		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);	
-          
+		$this->load->view($this->template, $data);
+
 	}
 
 
@@ -49,22 +49,27 @@ class Upload_data extends AUTH_Controller {
 		$data['userdata'] 	= $this->userdata;
 		$this->session->set_userdata(array("id_toko" => $param));
 		$this->load->view($this->template, $data);
-          
+
 	}
 	function deposit()
 	{
 		// $data['list']=$this->M_import->getData();
 		$data['content'] = 'admin/import_deposit';
 		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);	
-          
+		$this->load->view($this->template, $data);
+
 	}
-	function transaksi()
+	function transaksi() // brati seng iki rk perlu mas mksude rk perlu gawe session ng kene
 	{
 		// $data['list']=$this->M_admin->get_data_admin();
+		// $data['content'] = 'admin/import_transaksi';
+		// $data['userdata'] 	= $this->userdata;
+		// $this->load->view($this->template, $data);
+
 		$data['content'] = 'admin/import_transaksi';
 		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);	     
+		// $this->session->set_userdata(array("id_toko" => $param));
+		$this->load->view($this->template, $data);
 	}
 
 	function temp_upload($id_toko='')
@@ -73,10 +78,10 @@ class Upload_data extends AUTH_Controller {
 		$data['content'] = 'admin/temp_upload';
 		$data['userdata'] 	= $this->userdata;
 		$data['format_number'] = function($number){
-			return number_format($number, 2, ',', '.');			
+			return number_format($number, 2, ',', '.');
 		};
 		$this->load->view($this->template, $data);
-          
+
 	}
 
 	function delete_temp($params = '') {
@@ -110,7 +115,7 @@ class Upload_data extends AUTH_Controller {
 			}
 		$this->M_import->tambah_tokped($Id_toko,$id_MP,$Nama_toko,$keterangan);
 		$this->session->set_flashdata('sukses'," Berhasil Diinput");
-		redirect('Upload_data/list_toko');	
+		redirect('Upload_data/list_toko');
 	}
 	function tambah_shope()
 	{
@@ -125,6 +130,6 @@ class Upload_data extends AUTH_Controller {
 			}
 		$this->M_import->tambah_tokped($Id_toko,$id_MP,$Nama_toko,$keterangan);
 		$this->session->set_flashdata('sukses'," Berhasil Diinput");
-		redirect('Upload_data/list_toko_shope');	
+		redirect('Upload_data/list_toko_shope');
 	}
 }
