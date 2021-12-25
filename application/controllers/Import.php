@@ -8,7 +8,7 @@ use Box\Spout\Reader\Common\Creator\ReaderEntityFactory;
 
 class Import extends AUTH_Controller
 {
-    var $template='template/index';
+    var $template = 'template/index';
 
     function __construct()
     {
@@ -18,14 +18,15 @@ class Import extends AUTH_Controller
         $this->load->model('M_import');
     }
 
-    private function get_id_upload($id_toko, $tipe){
+    private function get_id_upload($id_toko, $tipe)
+    {
         $this->db->trans_begin();
         $this->db->insert('histori_upload', array('id_toko' => $id_toko, 'tipe_histori' => $tipe));
         $item_id = $this->db->insert_id();
-        if($this->db->trans_status() === FALSE){
+        if ($this->db->trans_status() === FALSE) {
             $this->db->trans_rollback();
             return 0;
-        }else{
+        } else {
             $this->db->trans_commit();
             return $item_id;
         }
@@ -36,7 +37,7 @@ class Import extends AUTH_Controller
         //ketika button submit diklik
         if ($this->input->post('submit', TRUE) == 'upload') {
             $config['upload_path']      = './temp_doc/'; //siapkan path untuk upload file
-            $config['allowed_types']    = 'xlsx|xls|csv'; //siapkan format file
+            $config['allowed_types']    = 'xlsx|xls'; //siapkan format file
             $config['file_name']        = 'deposit' . time(); //rename file yang diupload
 
             $this->load->library('upload', $config);
@@ -46,15 +47,15 @@ class Import extends AUTH_Controller
                 $file   = $this->upload->data();
 
                 $reader = ReaderEntityFactory::createXLSXReader(); //buat xlsx reader
-                $reader = ReaderEntityFactory::createCSVReader(); //buat csvreader
+                // $reader = ReaderEntityFactory::createCSVReader(); //buat csvreader
                 $reader->open('temp_doc/' . $file['file_name']); //open file xlsx yang baru saja diunggah
 
                 $id_toko = $this->session->userdata('id_toko');
 
                 $id_upload = $this->get_id_upload($id_toko, 'deposit');
 
-                if ($id_upload){
-                //looping pembacaat sheet dalam file
+                if ($id_upload) {
+                    //looping pembacaat sheet dalam file
                     foreach ($reader->getSheetIterator() as $sheet) {
                         $numRow = 2;
 
@@ -71,24 +72,27 @@ class Import extends AUTH_Controller
                                 $data = array(
                                     'date'              => $cells[0],
                                     'id_toko'           => $id_toko,
-                                    'status'    	    => $cells[1],
-                                    'invoice'     		=> $cells[2],
+                                    'status'            => $cells[1],
+                                    'invoice'           => trim($cells[2]),
                                     'nominal'           => preg_replace('/\,|\./', '', $cells[3]),
                                     'balance'           => preg_replace('/\,|\./', '', $cells[4]),
                                     'id_upload'         => $id_upload
-                                    // 'product_name'      => $cells[5],
-                                    // 'price'             => $cells[6],
-                                    // 'total_amount'     	=> $cells[7]
                                 );
-
+                                $this->db->where('invoice', $data['invoice']);
+                                if ($this->db->get('deposit_tokopedia')->num_rows() > 0) {
+                                    $this->db->where('invoice', $data['invoice']);
+                                    $this->db->update('deposit_tokopedia', $data);
+                                } else {
+                                    $this->db->insert('deposit_tokopedia', $data);
+                                }
                                 //tambahkan array $data ke $save
-                                array_push($save, $data);
+                                // array_push($save, $data);
                             }
 
                             $numRow++;
                         }
                         //simpan data ke database
-                        $this->M_import->simpan($save);
+                        // $this->M_import->simpan($save);
 
                         //tutup spout reader
                         $reader->close();
@@ -102,19 +106,19 @@ class Import extends AUTH_Controller
                                 window.location.replace("' . base_url('Data_deposit') . '");
                             </script>';
                     }
-                }else{
-                     $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Gagal upload data ke deposit');
+                } else {
+                    $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Gagal upload data ke deposit');
                 }
             } else {
                 // echo "Error :" . $this->upload->display_errors(); //tampilkan pesan error jika file gagal diupload
                 $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Tidak Ada File Yg diupload');
-				redirect($_SERVER['HTTP_REFERER']);
+                redirect($_SERVER['HTTP_REFERER']);
             }
         }
 
         $data['content'] = 'admin/import_deposit';
-		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);
+        $data['userdata']     = $this->userdata;
+        $this->load->view($this->template, $data);
     }
     public function transaksi()
     {
@@ -152,45 +156,52 @@ class Import extends AUTH_Controller
 
                             $data = array(
                                 'count'              => $cells[0],
-                                'order_id'    	     => $cells[1],
+                                'order_id'           => $cells[1],
                                 'invoice'            => $cells[2],
-								'pagment_date'       => $cells[3],
+                                'pagment_date'       => $cells[3],
                                 'order_status'       => $cells[4],
                                 'product_id'         => $cells[5],
                                 'product_name'       => $cells[6],
-								'quantity'           => $cells[7],
-                                'SKU'     	         => $cells[8],
-                                'notes'     		 => $cells[9],
+                                'quantity'           => $cells[7],
+                                'SKU'                => $cells[8],
+                                'notes'              => $cells[9],
                                 'price'              => $cells[10],
-								'discount_amount'    => $cells[11],
+                                'discount_amount'    => $cells[11],
                                 'subsidi_amount'     => $cells[12],
                                 'customer_name'      => $cells[13],
                                 'customer_phone'     => $cells[14],
-								'recipient'          => $cells[15],
+                                'recipient'          => $cells[15],
                                 'recipient_number'   => $cells[16],
                                 'recipient_address'  => $cells[17],
-                                'courier'     	     => $cells[18],
+                                'courier'            => $cells[18],
                                 'shipping_price_fee' => $cells[19],
                                 'insurance'          => $cells[20],
-								'total_shipping_fee' => $cells[21],
-                                'total_amount'     	 => $cells[22],
-                                'AWB'     	         => $cells[23],
+                                'total_shipping_fee' => $cells[21],
+                                'total_amount'       => $cells[22],
+                                'AWB'                => $cells[23],
                                 'jenis_layanan'      => $cells[24],
                                 'bebas_ongkir'       => $cells[25],
-								'warehouse_origin'   => $cells[26],
+                                'warehouse_origin'   => $cells[26],
                                 'campaign_name'      => $cells[27],
                                 'id_upload'          => $id_upload,
                                 'id_toko'            => $id_toko,
                             );
 
                             //tambahkan array $data ke $save
-                            array_push($save, $data);
+                            // array_push($save, $data);
+                            $this->db->where('invoice', $data['invoice']);
+                            if ($this->db->get('transaksi_tokopedia')->num_rows() > 0) {
+                                $this->db->where('invoice', $data['invoice']);
+                                $this->db->update('transaksi_tokopedia', $data);
+                            } else {
+                                $this->db->insert('transaksi_tokopedia', $data);
+                            }
                         }
 
                         $numRow++;
                     }
                     //simpan data ke database
-                    $this->M_import->simpan_trx($save);
+                    // $this->M_import->simpan_trx($save);
 
                     //tutup spout reader
                     $reader->close();
@@ -207,12 +218,12 @@ class Import extends AUTH_Controller
             } else {
                 // echo "Error :" . $this->upload->display_errors(); //tampilkan pesan error jika file gagal diupload
                 $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Tidak Ada File Yg diupload');
-				redirect($_SERVER['HTTP_REFERER']);
+                redirect($_SERVER['HTTP_REFERER']);
             }
         }
 
         $data['content'] = 'admin/import_transaksi';
-		$data['userdata'] 	= $this->userdata;
-		$this->load->view($this->template, $data);
+        $data['userdata']     = $this->userdata;
+        $this->load->view($this->template, $data);
     }
 }
