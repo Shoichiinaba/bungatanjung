@@ -18,6 +18,10 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/dist/css/adminlte.min.css">
+  <!-- pace-progress -->
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/pace-progress/themes/red/pace-theme-loading-bar.css">
+  <!-- overlayScrollbars -->
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Select2 -->
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/select2/css/select2.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
@@ -25,12 +29,25 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/toastr/toastr.min.css">
-
+  <!-- <style>
+    #loading {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      text-indent: 100%;
+      background: #e0e0e0 url('./assets/dist/img/load1.gif') no-repeat center;
+      z-index: 2;
+      opacity: 0.8;
+      background-size: 8%;
+    }
+  </style> -->
 
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
   <div class="wrapper">
+    <!-- preloader -->
+    <!-- <div id="loading">Loading....</div> -->
 
 
 
@@ -65,12 +82,18 @@
 <script src="<?= base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/dist/js/demo.js"></script>
+<!-- overlayScrollbars -->
+<script src="<?= base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- Select2 -->
 <script src="<?= base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
+<!-- pace-progress -->
+<script src="<?= base_url(); ?>assets/plugins/pace-progress/pace.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?= base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
 <!-- page script -->
+
+
 <script>
   $(function() {
     $("#example1").DataTable({
@@ -83,7 +106,7 @@
         this.api().columns().every(function() {
           var column = this;
           // console.log(column);
-          if (column[0][0] != 0 && column[0][0] != 7) {
+          if (column[0][0] != 0 && column[0][0] != 0) {
             var select = $('<select><option value=""></option></select>')
               .appendTo($(column.footer()).empty())
               .on('change', function() {

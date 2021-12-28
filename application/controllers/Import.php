@@ -110,7 +110,7 @@ class Import extends AUTH_Controller
                     $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Gagal upload data ke deposit');
                 }
             } else {
-                // echo "Error :" . $this->upload->display_errors(); //tampilkan pesan error jika file gagal diupload
+                echo "Error :" . $this->upload->display_errors(); //tampilkan pesan error jika file gagal diupload
                 $this->session->set_flashdata('error', '<span class="glyphicon glyphicon-remove"></span> Tidak Ada File Yg diupload');
                 redirect($_SERVER['HTTP_REFERER']);
             }
