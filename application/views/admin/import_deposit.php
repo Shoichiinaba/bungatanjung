@@ -44,7 +44,7 @@
             </div>
             <div class="col-sm-4">
               <div class="description-block">
-                <button class='btn btn-success swalDefaultError' id="upload" name="submit" type="submit" value="upload">
+                <button class='btn btn-success swalDefaultError' id="upload" name="submit" data-loading-text="<i class='spinner-border spinner-border-sm text-warning'></i> Loading..." type="submit" value="upload">
                   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   Import
                 </button>
@@ -57,18 +57,6 @@
           <?php } ?>
         </div>
       </div>
-      <!-- akhir konten -->
-      <div class="progress">
-        <progress id="progressBar" value="0" max="100" style="width:100%; display: none;"></progress>
-        <h3 id="status"></h3>
-        <p id="loaded_n_total"></p>
-      </div>
-
-      <!-- <div class="progress">
-        <div class="progress-bar bg-primary progress-bar-striped" id="progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:0%">
-          <span id="status"></span>
-        </div>
-      </div> -->
 
     </div>
     <!-- /.col -->
@@ -79,49 +67,12 @@
   <!-- /.row -->
 </div>
 
-<!-- Progress Bar -->
-
-<!-- <script>
-  function ambilId(file) {
-    return document.getElementById(file);
-  }
-
-  $(document).ready(function() {
-    $("#upload").click(function() {
-      ambilId("progressBar").style.display = "block";
-      var file = ambilId("file").files[0];
-
-      if (file != "") {
-        var formdata = new FormData();
-        formdata.append("excel", file);
-        var ajax = new XMLHttpRequest();
-        ajax.upload.addEventListener("progress", progressHandler, false);
-        ajax.addEventListener("load", completeHandler, false);
-        ajax.addEventListener("error", errorHandler, false);
-        ajax.addEventListener("abort", abortHandler, false);
-        ajax.open("POST", "<?php echo site_url('Import'); ?>", true);
-        ajax.send(formdata);
-      }
-    });
-  });
-
-  function progressHandler(event) {
-    ambilId("loaded_n_total").innerHTML = "Uploaded " + event.loaded + " bytes of " + event.total;
-    var percent = (event.loaded / event.total) * 100;
-    ambilId("progressBar").value = Math.round(percent);
-    ambilId("status").innerHTML = Math.round(percent) + "% uploaded... please wait";
-  }
-
-  function completeHandler(event) {
-    ambilId("status").innerHTML = event.target.responseText;
-    ambilId("progressBar").value = 0;
-  }
-
-  function errorHandler(event) {
-    ambilId("status").innerHTML = "Upload Failed";
-  }
-
-  function abortHandler(event) {
-    ambilId("status").innerHTML = "Upload Aborted";
-  }
-</script> -->
+<!-- loading button -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+  $('#upload').on('click', function() {
+    var $btn = $(this).button('loading')
+    // business logic...
+    $btn.button('loading')
+  })
+</script>
