@@ -61,6 +61,9 @@ class Import extends AUTH_Controller
 
                         //siapkan variabel array kosong untuk menampung variabel array data
                         $save   = array();
+                        $iterationDataUploadSuccess = 0;
+                        $iterationDataUploadReplace = 0;
+                        $iterationDataUploadFailed = 0;
 
                         //looping pembacaan row dalam sheet
                         foreach ($sheet->getRowIterator() as $row) {
@@ -80,10 +83,26 @@ class Import extends AUTH_Controller
                                 );
                                 $this->db->where('invoice', $data['invoice']);
                                 if ($this->db->get('deposit_tokopedia')->num_rows() > 0) {
+                                    $this->db->trans_begin();
                                     $this->db->where('invoice', $data['invoice']);
                                     $this->db->update('deposit_tokopedia', $data);
+                                    if ($this->db->trans_status() === FALSE) {
+                                        $iterationDataUploadFailed++;
+                                        $this->db->trans_rollback();
+                                    } else {
+                                        $iterationDataUploadReplace++;
+                                        $this->db->trans_commit();
+                                    }
                                 } else {
+                                    $this->db->trans_begin();
                                     $this->db->insert('deposit_tokopedia', $data);
+                                    if ($this->db->trans_status() === FALSE) {
+                                        $iterationDataUploadFailed++;
+                                        $this->db->trans_rollback();
+                                    } else {
+                                        $iterationDataUploadSuccess++;
+                                        $this->db->trans_commit();
+                                    }
                                 }
                                 //tambahkan array $data ke $save
                                 // array_push($save, $data);
@@ -102,7 +121,7 @@ class Import extends AUTH_Controller
 
                         //tampilkan pesan success dan redirect ulang ke index controller import
                         echo    '<script type="text/javascript">
-                                alert(\'Data Deposit berhasil di Import\');
+                                alert("' . $iterationDataUploadSuccess . ' data upload\n' . $iterationDataUploadReplace . ' data kembar di replace\n' . $iterationDataUploadFailed . ' data gagal");
                                 window.location.replace("' . base_url('Data_deposit') . '");
                             </script>';
                     }
@@ -148,6 +167,9 @@ class Import extends AUTH_Controller
                     $save   = array();
 
                     //looping pembacaan row dalam sheet
+                    $iterationDataUploadSuccess = 0;
+                    $iterationDataUploadReplace = 0;
+                    $iterationDataUploadFailed = 0;
                     foreach ($sheet->getRowIterator() as $row) {
 
                         if ($numRow > 1) {
@@ -191,10 +213,26 @@ class Import extends AUTH_Controller
                             // array_push($save, $data);
                             $this->db->where('invoice', $data['invoice']);
                             if ($this->db->get('transaksi_tokopedia')->num_rows() > 0) {
+                                $this->db->trans_begin();
                                 $this->db->where('invoice', $data['invoice']);
                                 $this->db->update('transaksi_tokopedia', $data);
+                                if ($this->db->trans_status() === FALSE) {
+                                    $iterationDataUploadFailed++;
+                                    $this->db->trans_rollback();
+                                } else {
+                                    $iterationDataUploadReplace++;
+                                    $this->db->trans_commit();
+                                }
                             } else {
+                                $this->db->trans_begin();
                                 $this->db->insert('transaksi_tokopedia', $data);
+                                if ($this->db->trans_status() === FALSE) {
+                                    $iterationDataUploadFailed++;
+                                    $this->db->trans_rollback();
+                                } else {
+                                    $iterationDataUploadSuccess++;
+                                    $this->db->trans_commit();
+                                }
                             }
                         }
 
@@ -211,7 +249,7 @@ class Import extends AUTH_Controller
 
                     //tampilkan pesan success dan redirect ulang ke index controller import
                     echo    '<script type="text/javascript">
-                               alert(\'Data Deposit berhasil di Import\');
+                               alert("' . $iterationDataUploadSuccess . ' data diupload\n' . $iterationDataUploadReplace . ' data kembar di replace\n' . $iterationDataUploadFailed . ' data gagal");
                                window.location.replace("' . base_url('Data_transaksi') . '");
                            </script>';
                 }
