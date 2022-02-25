@@ -98,10 +98,10 @@
 <script>
   $(function() {
     $("#example1").DataTable({
-      "responsive": true,
+      "responsive": false,
       "lengthChange": false,
       "autoWidth": false,
-      "ordering": true,
+      "ordering": false,
       "processing": true,
       initComplete: function() {
         this.api().columns().every(function() {
