@@ -130,10 +130,10 @@
       "paging": true,
       "lengthChange": true,
       "searching": true,
-      "ordering": true,
-      "info": true,
+      "ordering": false,
+      "info": false,
       "autoWidth": false,
-      "responsive": true,
+      "responsive": false,
     });
 
     $("#example3").DataTable({
