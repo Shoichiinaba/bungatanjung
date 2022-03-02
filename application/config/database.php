@@ -81,8 +81,8 @@ $db['default'] = array(
 	'username' => 'u5587213_bungatanjung',
 	'password' => 'Sembarang123!',
 	// ofline
-	'username' => 'root',
-	'password' => '',
+	// 'username' => 'root',
+	// 'password' => '',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
