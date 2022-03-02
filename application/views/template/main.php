@@ -77,7 +77,6 @@
 <script src="<?= base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-select/js/dataTables.select.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-select/js/select.bootstrap4.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -100,8 +99,9 @@
     $("#example1").DataTable({
       "responsive": false,
       "lengthChange": false,
-      "autoWidth": false,
-      "ordering": false,
+      "scrollX": true,
+      "autoWidth": true,
+      "ordering": true,
       "processing": true,
       initComplete: function() {
         this.api().columns().every(function() {
@@ -126,21 +126,12 @@
       "buttons": ["csv", "excel", "print"],
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": false,
-      "info": false,
-      "autoWidth": false,
-      "responsive": false,
-    });
-
     $("#example3").DataTable({
       "responsive": false,
       "lengthChange": false,
       "autoWidth": false,
       "ordering": false,
+      "scrollX": true,
       "processing": true,
       initComplete: function() {
         this.api().columns().every(function() {
@@ -165,12 +156,7 @@
       "buttons": ["csv", "excel", "print"],
     }).buttons().container().appendTo('#example3_wrapper .col-md-6:eq(0)');
   });
-
-  // $('#example1').DataTable({
-
-  // });
 </script>
-<!-- iki wingi q jajal gawe iki  -->
 
 <script type="text/javascript">
   $(function() {

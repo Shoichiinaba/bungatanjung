@@ -24,7 +24,7 @@
       </div>
       <!-- /.card-header -->
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table id="example" class="table table-bordered table-striped">
           <thead>
             <tr>
               <th>NO</th>
@@ -39,20 +39,7 @@
             </tr>
           </thead>
           <tbody>
-            <?php $no = 0;
-            foreach ($list as $g) : $no++; ?>
-              <tr>
-                <td><?php echo $no; ?></td>
-                <td><?php echo $g->date; ?></td>
-                <td><?php echo $g->Nama_toko; ?></td>
-                <td><?php echo $g->status; ?></td>
-                <td><?php echo $g->invoice; ?></td>
-                <td><?php echo $g->nominal; ?></td>
-                <td><?php echo $g->balance; ?></td>
 
-                <!-- <a href="<?php echo site_url('data_deposit/hapus/' . $g->invoice); ?>" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini');"type="button" class="btn btn-danger btn-xs"  data-placement="top"  title="Hapus"><i class="fa fa-trash"></i></a> -->
-              </tr>
-            <?php endforeach; ?>
           </tbody>
           <tfoot>
             <tr>
@@ -71,3 +58,47 @@
   </section>
   <!-- akhir konten wraper -->
 </div>
+
+
+<script>
+  $(function() {
+    $("#example").DataTable({
+      "responsive": true,
+      "lengthChange": false,
+      "autoWidth": true,
+      "ordering": true,
+      "processing": true,
+      "ajax": {
+        "url": "<?= site_url('Data_deposit/get_ajax') ?>",
+        "type": "POST"
+      },
+      "columnDefs": [{
+        "targets": [2, 3],
+        "orderable": false,
+      }],
+      initComplete: function() {
+        this.api().columns().every(function() {
+          var column = this;
+          // console.log(column);
+          if (column[0][0] != 0 && column[0][0] != 0) {
+            var select = $('<select><option value=""></option></select>')
+              .appendTo($(column.footer()).empty())
+              .on('change', function() {
+                var val = $.fn.dataTable.util.escapeRegex(
+                  $(this).val()
+                );
+                column.search(val ? '^' + val + '$' : '', true, false)
+                  .draw();
+              });
+            column.data().unique().sort().each(function(d, j) {
+              select.append('<option value="' + d + '">' + d + '</option>')
+            });
+          }
+        });
+      },
+      "dom": 'Bfrtip',
+      "buttons": ['csv', 'excel', 'print'],
+    }).buttons().container().appendTo('#example_wrapper .col-md-6:eq(0)');
+
+  });
+</script>
