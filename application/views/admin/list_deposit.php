@@ -68,15 +68,10 @@
       "autoWidth": true,
       "ordering": true,
       "processing": true,
-      "scrollX": true,
       "ajax": {
         "url": "<?= site_url('Data_deposit/get_ajax') ?>",
         "type": "POST"
       },
-      "columnDefs": [{
-        "targets": [2, 3],
-        "orderable": false,
-      }],
       initComplete: function() {
         this.api().columns().every(function() {
           var column = this;

@@ -96,36 +96,6 @@
 
 <script>
   $(function() {
-    $("#example1").DataTable({
-      "responsive": false,
-      "lengthChange": false,
-      "scrollX": true,
-      "autoWidth": true,
-      "ordering": true,
-      "processing": true,
-      initComplete: function() {
-        this.api().columns().every(function() {
-          var column = this;
-          // console.log(column);
-          if (column[0][0] != 0 && column[0][0] != 0) {
-            var select = $('<select><option value=""></option></select>')
-              .appendTo($(column.footer()).empty())
-              .on('change', function() {
-                var val = $.fn.dataTable.util.escapeRegex(
-                  $(this).val()
-                );
-                column.search(val ? '^' + val + '$' : '', true, false)
-                  .draw();
-              });
-            column.data().unique().sort().each(function(d, j) {
-              select.append('<option value="' + d + '">' + d + '</option>')
-            });
-          }
-        });
-      },
-      "buttons": ["csv", "excel", "print"],
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
     $("#example3").DataTable({
       "responsive": false,
       "lengthChange": false,

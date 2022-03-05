@@ -43,7 +43,6 @@ class Data_deposit extends AUTH_Controller
 	{
 		$data['content'] 		= 'admin/list_deposit';
 		$data['list']			= $this->M_transaksi->deposit();
-		// $data['filt']			=$this->M_transaksi->filter();
 		$data['userdata'] 		= $this->userdata;
 		$this->load->view($this->template, $data);
 	}
@@ -53,9 +52,5 @@ class Data_deposit extends AUTH_Controller
 		$this->M_transaksi->delete($params);
 		$this->session->set_flashdata('sukses', "Berhasil Di Hapus");
 		return redirect('Data_deposit');
-	}
-
-	function data_filter()
-	{
 	}
 }
