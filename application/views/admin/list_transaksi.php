@@ -75,6 +75,7 @@
       "ordering": true,
       "processing": true,
       "scrollX": true,
+      "serverSide": true,
       "ajax": {
         "url": "<?= site_url('Data_transaksi/get_ajax') ?>",
         "type": "POST"
