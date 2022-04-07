@@ -68,6 +68,7 @@
       "autoWidth": true,
       "ordering": true,
       "processing": true,
+      'serverSide': true,
       "ajax": {
         "url": "<?= site_url('Data_deposit/get_ajax') ?>",
         "type": "POST"

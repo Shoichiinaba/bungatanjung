@@ -29,18 +29,8 @@
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/bootstrap-slider/css/bootstrap-slider.min.css">
   <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/toastr/toastr.min.css">
-  <!-- <style>
-    #loading {
-      width: 100%;
-      height: 100%;
-      position: fixed;
-      text-indent: 100%;
-      background: #e0e0e0 url('./assets/dist/img/load1.gif') no-repeat center;
-      z-index: 2;
-      opacity: 0.8;
-      background-size: 8%;
-    }
-  </style> -->
+  <!-- date range picker -->
+  <link rel="stylesheet" href="<?= base_url(); ?>assets/plugins/daterangepicker/daterangepicker.css">
 
 </head>
 
@@ -56,11 +46,20 @@
     <div>
 </body>
 
+
 </html>
+
+<!-- Bootstrap 4 -->
 <!-- jQuery -->
 <script src="<?= base_url(); ?>assets/plugins/jquery/jquery.min.js"></script>
-<!-- Bootstrap 4 -->
+<!-- bootstrapt -->
 <script src="<?= base_url(); ?>assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!--moment -->
+<script src="<?= base_url(); ?>assets/plugins/moment/moment.min.js"></script>
+<!-- date-range-picker -->
+<script src="<?= base_url(); ?>assets/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="<?= base_url(); ?>assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 <!-- DataTables -->
 <script src="<?= base_url(); ?>assets/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables/ddtf.js"></script>
@@ -77,22 +76,19 @@
 <script src="<?= base_url(); ?>assets/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-select/js/dataTables.select.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/datatables-select/js/select.bootstrap4.min.js"></script>
+<!-- Select2 -->
+<script src="<?= base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?= base_url(); ?>assets/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?= base_url(); ?>assets/dist/js/demo.js"></script>
 <!-- overlayScrollbars -->
 <script src="<?= base_url(); ?>assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-<!-- Select2 -->
-<script src="<?= base_url(); ?>assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- pace-progress -->
 <script src="<?= base_url(); ?>assets/plugins/pace-progress/pace.min.js"></script>
 <!-- SweetAlert2 -->
 <script src="<?= base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
-<!-- page script -->
-<!-- bootstrapt -->
-
 
 <script>
   $(function() {
@@ -165,6 +161,72 @@
     $('.select2bs4').select2({
       theme: 'bootstrap4'
     })
+
+    //Date picker
+    $('#reservationdate').datetimepicker({
+      format: 'L'
+    });
+
+    //Date and time picker
+    $('#reservationdatetime').datetimepicker({
+      icons: {
+        time: 'far fa-clock'
+      }
+    });
+
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker({
+        ranges: {
+          'Today': [moment(), moment()],
+          'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month': [moment().startOf('month'), moment().endOf('month')],
+          'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate: moment()
+      },
+      function(start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    })
+
+    $("input[data-bootstrap-switch]").each(function() {
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
+
+  })
+  // BS-Stepper Init
+  document.addEventListener('DOMContentLoaded', function() {
+    window.stepper = new Stepper(document.querySelector('.bs-stepper'))
   })
 </script>
 
