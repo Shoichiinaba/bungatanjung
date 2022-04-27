@@ -28,6 +28,28 @@ class M_transaksi extends CI_Model
 			$i++;
 		}
 
+		// $this->db->like('invoice', "INV/20210327/MPL/1131763703");
+
+		if (isset($_GET['nama_toko'])) {
+			// $invoice = parse_url($_GET['invoice'], PHP_URL_QUERY);
+			$nama_toko = $_GET['nama_toko'];
+			$this->db->where("toko.Nama_toko = '$nama_toko'");
+		}
+
+		if (isset($_GET['status'])) {
+			// $invoice = parse_url($_GET['invoice'], PHP_URL_QUERY);
+			$status = $_GET['status'];
+			$this->db->where("deposit_tokopedia.status = '$status'");
+		}
+
+		if (isset($_GET['invoice'])) {
+			// $invoice = parse_url($_GET['invoice'], PHP_URL_QUERY);
+			$invoice = $_GET['invoice'];
+			$invoice = str_replace("\/", "/", $invoice);
+			$this->db->where("deposit_tokopedia.invoice = '$invoice'");
+		}
+
+
 		if (isset($_POST['order'])) { // here order processing
 			$this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
 		} else if (isset($this->order)) {

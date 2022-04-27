@@ -17,6 +17,7 @@ class Data_deposit extends AUTH_Controller
 		$list = $this->M_transaksi->get_datatables();
 		$data = array();
 		$no = @$_POST['start'];
+
 		foreach ($list as $g) {
 			$no++;
 			$row = array();

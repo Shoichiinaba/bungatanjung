@@ -89,7 +89,28 @@
 <!-- SweetAlert2 -->
 <script src="<?= base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 <script src="<?= base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.18.2/URI.min.js" type="text/javascript"></script>
 
+<script>
+  function addOrUpdateUriParameter(uri, parameter, value) {
+    var new_url = normalizeAmpersand(uri);
+    new_url = URI(new_url).normalizeQuery();
+    if (new_url.hasQuery('persistent-table')) {
+      new_url.removeQuery('persistent-table');
+    }
+    if (new_url.hasQuery(parameter)) {
+      new_url.removeQuery(parameter);
+    }
+    if (value !== '' && value != null) {
+      new_url = new_url.addQuery(parameter, value);
+    }
+    return new_url.toString();
+  }
+
+  function normalizeAmpersand(string) {
+    return string.replace(/&amp;/g, "&").replace(/amp%38/g, "");
+  }
+</script>
 <script>
   $(function() {
     $("#example3").DataTable({
